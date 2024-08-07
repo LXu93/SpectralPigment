@@ -12,13 +12,15 @@ from openpyxl_image_loader import SheetImageLoader
 # Website modes
 MODES = ("Single pigment", "Comparison", "Show texture images")
 COLORMODES = ("Corresponding color mode", "Distinct mode")
-MARBLES = ("Pentelic marble", "Paros", None)
-BINDERS = ("Punic wax", "Egg white",None)
-PIGMENTS = ("Red lake", "Cinnabar", "Egyptian blue", None)
-GROUNDS = ("Lead white", "Calcium carbonate", "Mixed calcite", "No ground",None)
-NLAYERS = ("1", "2", "3", None)
+PIGMENT_ATTRIBUTES = (
+("Pentelic marble", "Paros", None), # MARBLES
+ ("Punic wax", "Egg white",None), # BINDERS
+ ("Red lake", "Cinnabar", "Egyptian blue", None), # PIGMENTS
+ ("Lead white", "Calcium carbonate", "Mixed calcite", "No ground",None), # GROUNDS
+ ("1", "2", "3", None) # NLAYERS
+ ) 
 
-
+# Use Pigment_attribute object to wrap pigment attribute names and values for querying
 class Pigment_attribute():
     def __init__(self, column_name, value) -> None:
         self.column_name = column_name
@@ -31,6 +33,7 @@ def query_pigment(df, pigment_attributes):
             res = res[res[attribute.column_name] == attribute.value]
     return res
 
+# Customize display format for select lists 
 def format_display(label):
     if label == None:
         return "any"
@@ -165,6 +168,11 @@ def single_selection_list(pigment_list):
         st.session_state.selected_names = set(selected_names)
     return display_list
 
+def multi_selection_list(pigment_list):
+    st.session_state.display_list_edited = st.data_editor(pigment_list, disabled=pigment_list.columns[1:], hide_index=True, use_container_width=True)
+    st.session_state.p_list_multi.update(st.session_state.display_list_edited)
+    st.session_state.selected_names = set(st.session_state.p_list_multi[st.session_state.p_list_multi['Select?'] == True]['Name'].tolist())
+
 def update_selection():
     st.session_state.p_list_multi.update(st.session_state.display_list_edited)
 
@@ -182,35 +190,36 @@ def clear_selected_names():
         sync_selection()
     st.session_state.selected_names = set()
 
-
-def multi_selection_list(pigment_list):
-    st.session_state.display_list_edited = st.data_editor(pigment_list, disabled=pigment_list.columns[1:], hide_index=True, use_container_width=True)
-    st.session_state.p_list_multi.update(st.session_state.display_list_edited)
-    st.session_state.selected_names = set(st.session_state.p_list_multi[st.session_state.p_list_multi['Select?'] == True]['Name'].tolist())
-
 def all_selected():
-    st.session_state.display_list = st.session_state.p_list_multi[st.session_state.p_list_multi['Select?'] == True]
+    st.session_state.display_list = st.session_state.p_list_multi[st.session_state.p_list_multi['Select?'] == True].copy()
 
 def reset_query_conditions():
-    st.session_state.marble = MARBLES[-1]
-    st.session_state.binder = BINDERS[-1]
-    st.session_state.pigment = PIGMENTS[-1]
-    st.session_state.ground = GROUNDS[-1]
-    st.session_state.nlayers = NLAYERS[-1]
+    st.session_state.marble = PIGMENT_ATTRIBUTES[0][-1]
+    st.session_state.binder = PIGMENT_ATTRIBUTES[1][-1]
+    st.session_state.pigment = PIGMENT_ATTRIBUTES[2][-1]
+    st.session_state.ground = PIGMENT_ATTRIBUTES[3][-1]
+    st.session_state.nlayers = PIGMENT_ATTRIBUTES[4][-1]
+    if 'p_list_multi' in st.session_state:
+        sync_selection()
 
 
 def main():
+    # Read pigment list file
     list_path = 'Data/pigment_list.csv'
     p_list = pd.read_csv(list_path)
     p_list['Number of Layers'] = p_list['Number of Layers'].astype(str)
    
+    # Initialize session stste
     if "selected_names" not in st.session_state:
         st.session_state.selected_names = set()
     
+    # Layout
     st.title("Spectral Pigment (This is title)")
+    # Layout of the sidebar
     with st.sidebar:
         st.header("Configuration")
         st.session_state.mode = st.sidebar.selectbox('Choose mode:', MODES, on_change=clear_selected_names)
+        mode_intro_area = st.empty()
         if st.session_state.mode == MODES[0]:
             st.session_state.view_angle = st.sidebar.selectbox(
                 "View angle",
@@ -218,14 +227,17 @@ def main():
                 index= 0,
                 format_func= format_display,                
             )
-
         if st.session_state.mode is not MODES[2]:
-            st.session_state.color_mode = st.radio("Select plot color mode",COLORMODES)
+            st.session_state.color_mode = st.radio("Color mode of curves",
+                                                   COLORMODES,
+                                                   captions=["Use the corresponding pigment color for each curve", "Use distinct colors for curves"])
 
+    # layout of the main part
     st.markdown("description")
     plot_area = st.empty()
-    st.markdown("description")
-    pigment_option1, pigment_option2, pigment_option3, pigment_option4, pigment_option5 = st.columns(5)
+    st.markdown(
+"<span style='color:grey'> You can query the pigments with the corresponding attributes through the following select boxes</span>", unsafe_allow_html=True)
+    pigment_options = st.columns(5)
     reset_button_area, download_button_area, _ = st.columns([1,2,4])
     reset_button_area.button("reset query", on_click=reset_query_conditions)
     if st.session_state.mode == MODES[1]:
@@ -236,11 +248,11 @@ def main():
         col2.button("reset slection", on_click=clear_selected_names)
     list_area = st.empty()
 
-    
-    with pigment_option1:
+    # Set pigment query checkboxes
+    with pigment_options[0]:
         marble_value = st.selectbox(
             "Marble",
-            MARBLES,
+            PIGMENT_ATTRIBUTES[0],
             index= 2,
             format_func= format_display,
             on_change=sync_selection,
@@ -248,10 +260,10 @@ def main():
             placeholder="any"
         )
 
-    with pigment_option2:
+    with pigment_options[1]:
         binder_value = st.selectbox(
             "Binder",
-            BINDERS,
+            PIGMENT_ATTRIBUTES[1],
             index= 2,
             format_func= format_display,
             on_change=sync_selection,
@@ -259,10 +271,10 @@ def main():
             placeholder="any"
         )
 
-    with pigment_option3:
+    with pigment_options[2]:
         pigment_value = st.selectbox(
             "Pigment",
-            PIGMENTS,
+            PIGMENT_ATTRIBUTES[2],
             index= 3,
             format_func= format_display,
             on_change=sync_selection,
@@ -270,10 +282,10 @@ def main():
             placeholder="any"
         )
 
-    with pigment_option4:
+    with pigment_options[3]:
         ground_value = st.selectbox(
             "Ground",
-            GROUNDS,
+            PIGMENT_ATTRIBUTES[3],
             index= 4,
             format_func= format_display,
             on_change=sync_selection,
@@ -281,10 +293,10 @@ def main():
             placeholder="any"
         )
 
-    with pigment_option5:
+    with pigment_options[4]:
         nlayers_value = st.selectbox(
             "Layer numbers",
-            NLAYERS,
+            PIGMENT_ATTRIBUTES[4],
             index= 3,
             format_func= format_display,
             on_change=sync_selection,
@@ -300,6 +312,9 @@ def main():
     pigment_attributes = [marble, binder, pigment, ground, nlayers]
     
     if st.session_state.mode == MODES[0]:
+        with mode_intro_area:
+            st.markdown("<span style='color:grey'> Select one pigment from the table (by clicking the box at the front of each row) to show its reflectance spectra in the interactive plot, where you would also be able to download the plot.</span>" ,unsafe_allow_html=True)
+        
         with list_area:
             queried_pigments = query_pigment(p_list, pigment_attributes)
             single_selection_list(queried_pigments)
@@ -310,9 +325,12 @@ def main():
         if st.session_state.selected_names:
             data = get_download_data(st.session_state.selected_names)
             with download_button_area:
-                st.download_button( label='Download spectra as CSV', data=data, file_name='spectra.csv', mime='text/csv')
+                st.download_button( label='Download spectral data as CSV', data=data, file_name='spectra.csv', mime='text/csv')
         
     elif st.session_state.mode == MODES[1]:
+        with mode_intro_area:
+            st.markdown("<span style = 'color:grey'> Select pigments from the table (by clicking the box at the front of each row) to show their reflectance spectra in the interactive plot, where you would also be able to download the plot. In this mode, the plotted curve for each pigment is the reflectance spetra of 0/45 geometry.</span>", unsafe_allow_html=True )
+            
         if 'p_list_multi' not in st.session_state:
             st.session_state.p_list_multi = p_list
             st.session_state.p_list_multi.insert(0, 'Select?', False)
@@ -320,8 +338,8 @@ def main():
             st.session_state.display_list_edited = st.session_state.p_list_multi.copy()
 
         with list_area:     
-            queried_pigments = query_pigment(st.session_state.display_list, pigment_attributes)
-            multi_selection_list(queried_pigments)
+            st.session_state.display_list = query_pigment(st.session_state.display_list, pigment_attributes)
+            multi_selection_list(st.session_state.display_list)
 
         with plot_area:
             plot(st.session_state.selected_names)
@@ -329,9 +347,12 @@ def main():
         if st.session_state.selected_names:
             data = get_download_data(st.session_state.selected_names)
             with download_button_area:
-                st.download_button( label='Download spectra as CSV', data=data, file_name='spectra.csv', mime='text/csv')
+                st.download_button( label='Download spectral Data as CSV', data=data, file_name='spectra.csv', mime='text/csv')
     
     elif st.session_state.mode == MODES[2]:
+        with mode_intro_area:
+            st.markdown("<span style='color:grey'>Select one pigment from the table (by clicking the box at the front of each row) to show its texture photos.</span>", unsafe_allow_html=True)
+            
         with list_area:
             queried_pigments = query_pigment(p_list, pigment_attributes)
             single_selection_list(queried_pigments) 
