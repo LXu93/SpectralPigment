@@ -10,7 +10,7 @@ from openpyxl_image_loader import SheetImageLoader
 
 # Define constant
 # Website modes
-MODES = ("Single pigment", "Comparison", "Show texture images")
+MODES = ("Single mock-up", "Comparison", "Texture images")
 COLORMODES = ("Corresponding color mode", "Distinct mode")
 PIGMENT_ATTRIBUTES = (
 ("Pentelic marble", "Paros", None), # MARBLES
@@ -19,6 +19,13 @@ PIGMENT_ATTRIBUTES = (
  ("Lead white", "Calcium carbonate", "Mixed calcite", "No ground",None), # GROUNDS
  ("1", "2", "3", None) # NLAYERS
  ) 
+hide_menu = """
+<style>
+#MainMenu {
+    visibility:hidden;
+}
+</style>
+"""
 
 # Use Pigment_attribute object to wrap pigment attribute names and values for querying
 class Pigment_attribute():
@@ -39,7 +46,8 @@ def format_display(label):
         return "any"
     else:
         return label
-    
+
+
 def plot(selected_names, view_angle='45'):
     folder_path = 'Data/MA-T12 data/'
     extension = '.xlsx'
@@ -51,7 +59,7 @@ def plot(selected_names, view_angle='45'):
 
     fig = go.Figure()
     fig.update_layout(
-                xaxis_title='Wavelength (in nanometer)',
+                xaxis_title='Wavelength (nm)',
                 yaxis_title='Reflectance',
             )  
     
@@ -88,7 +96,7 @@ def plot(selected_names, view_angle='45'):
         
             fig.update_layout(
                 legend_title='Illumination & view angles',
-                title= f'Pigment: {name}'
+                title= f'Mock-up: {name}'
             )
 
         if st.session_state.mode == MODES[1]:
@@ -110,7 +118,8 @@ def plot(selected_names, view_angle='45'):
                 fig.add_trace(trace)
         
             fig.update_layout(
-                legend_title='Pigment name'
+                legend_title='Pigment name',
+                showlegend = True
             )
   
     st.plotly_chart(fig)
@@ -204,17 +213,18 @@ def reset_query_conditions():
 
 
 def main():
+    # Hiding the default top-right menu from streamlit
+    st.markdown(hide_menu, unsafe_allow_html=True)
     # Read pigment list file
     list_path = 'Data/pigment_list.csv'
-    p_list = pd.read_csv(list_path)
-    p_list['Number of Layers'] = p_list['Number of Layers'].astype(str)
+    st.session_state.p_list = pd.read_csv(list_path)
+    st.session_state.p_list['Number of layers'] = st.session_state.p_list['Number of layers'].astype(str)
    
     # Initialize session stste
     if "selected_names" not in st.session_state:
         st.session_state.selected_names = set()
     
     # Layout
-    st.title("Spectral Pigment (This is title)")
     # Layout of the sidebar
     with st.sidebar:
         st.header("Configuration")
@@ -230,13 +240,15 @@ def main():
         if st.session_state.mode is not MODES[2]:
             st.session_state.color_mode = st.radio("Color mode of curves",
                                                    COLORMODES,
-                                                   captions=["Use the corresponding pigment color for each curve", "Use distinct colors for curves"])
+                                                   captions=["Use the corresponding mock-up color for each curve", "Use distinct colors for curves"])
 
+    
     # layout of the main part
-    st.markdown("description")
+    title_area = st.empty()
+    description_area = st.empty()
     plot_area = st.empty()
     st.markdown(
-"<span style='color:grey'> You can query the pigments with the corresponding attributes through the following select boxes</span>", unsafe_allow_html=True)
+"<span style='color:grey'> You can query the mock-ups with the corresponding attribute combinations through the following select boxes</span>", unsafe_allow_html=True)
     pigment_options = st.columns(5)
     reset_button_area, download_button_area, _ = st.columns([1,2,4])
     reset_button_area.button("reset query", on_click=reset_query_conditions)
@@ -295,7 +307,7 @@ def main():
 
     with pigment_options[4]:
         nlayers_value = st.selectbox(
-            "Layer numbers",
+            "Numbers of layers",
             PIGMENT_ATTRIBUTES[4],
             index= 3,
             format_func= format_display,
@@ -308,15 +320,21 @@ def main():
     binder = Pigment_attribute("Binder", binder_value)
     pigment = Pigment_attribute("Pigment", pigment_value)
     ground = Pigment_attribute("Ground", ground_value)
-    nlayers = Pigment_attribute("Number of Layers", nlayers_value)
+    nlayers = Pigment_attribute("Number of layers", nlayers_value)
     pigment_attributes = [marble, binder, pigment, ground, nlayers]
     
     if st.session_state.mode == MODES[0]:
+        with title_area:
+            st.title("Single mock-up multiangle reflectance")
+        
+        with description_area:
+            st.markdown("<span> Reflectance spectra of single mock-up.</span><span> The mock-ups have been named using the following convention: Marble_Binder_Pigment_Ground_nLayers. More information in the Home page. </span>", unsafe_allow_html=True)
+
         with mode_intro_area:
-            st.markdown("<span style='color:grey'> Select one pigment from the table (by clicking the box at the front of each row) to show its reflectance spectra in the interactive plot, where you would also be able to download the plot.</span>" ,unsafe_allow_html=True)
+            st.markdown("<span style='color:grey'> Select one pigment from the table (by clicking the box at the front of each row) to show its reflectance spectra in the interactive plot,where you can also download the plot.</span>" ,unsafe_allow_html=True)
         
         with list_area:
-            queried_pigments = query_pigment(p_list, pigment_attributes)
+            queried_pigments = query_pigment(st.session_state.p_list, pigment_attributes)
             single_selection_list(queried_pigments)
         
         with plot_area:
@@ -328,11 +346,17 @@ def main():
                 st.download_button( label='Download spectral data as CSV', data=data, file_name='spectra.csv', mime='text/csv')
         
     elif st.session_state.mode == MODES[1]:
+        with title_area:
+            st.title("Comparison of mock-up reflectance")
+
+        with description_area:
+            st.markdown("<span> Reflectance spectra of selected mock-ups. The mock-ups have been named using the following convention: Marble_Binder_Pigment_Ground_nLayers. More information in the Home page. </span>", unsafe_allow_html=True)
+
         with mode_intro_area:
-            st.markdown("<span style = 'color:grey'> Select pigments from the table (by clicking the box at the front of each row) to show their reflectance spectra in the interactive plot, where you would also be able to download the plot. In this mode, the plotted curve for each pigment is the reflectance spetra of 0/45 geometry.</span>", unsafe_allow_html=True )
+            st.markdown("<span style = 'color:grey'> Select pigments from the table (by clicking the box at the front of each row) to show their reflectance spectra in the interactive plot, where you can also download the plot. In this mode the plotted curve for each mock-up is the reflectance spectrum at 0/45 geometry</span>", unsafe_allow_html=True )
             
         if 'p_list_multi' not in st.session_state:
-            st.session_state.p_list_multi = p_list
+            st.session_state.p_list_multi = st.session_state.p_list
             st.session_state.p_list_multi.insert(0, 'Select?', False)
             st.session_state.display_list = st.session_state.p_list_multi.copy()
             st.session_state.display_list_edited = st.session_state.p_list_multi.copy()
@@ -350,11 +374,17 @@ def main():
                 st.download_button( label='Download spectral Data as CSV', data=data, file_name='spectra.csv', mime='text/csv')
     
     elif st.session_state.mode == MODES[2]:
+        with title_area:
+            st.title("Texture images")
+
+        with description_area:
+            st.markdown("<span> Texture images of mock-up. The mock-ups have been named using the following convention: Marble_Binder_Pigment_Ground_nLayers. More information in the Home page. </span>", unsafe_allow_html=True)
+
         with mode_intro_area:
             st.markdown("<span style='color:grey'>Select one pigment from the table (by clicking the box at the front of each row) to show its texture photos.</span>", unsafe_allow_html=True)
             
         with list_area:
-            queried_pigments = query_pigment(p_list, pigment_attributes)
+            queried_pigments = query_pigment(st.session_state.p_list, pigment_attributes)
             single_selection_list(queried_pigments) 
         
         if st.session_state.selected_names:
