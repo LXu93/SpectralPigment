@@ -29,39 +29,39 @@ PAR_PW_RL_MC_2,Paros,Punic wax,Red lake,Mixed calcite,2
 PAR_PW_RL_NG_2,Paros,Punic wax,Red lake,No ground,2
 PAR_PW_EB_PB_3,Paros,Punic wax,Egyptian blue,Lead white,3
 PAR_PW_RL_NG_3,Paros,Punic wax,Red lake,No ground,3
-PEN_PW_CN_NG_2,Pentelic marble,Punic wax,Cinnabar,No ground,2
-PEN_EW_EB_NG_2,Pentelic marble,Egg white,Egyptian blue,No ground,2
-PEN_EW_EB_NG_3,Pentelic marble,Egg white,Egyptian blue,No ground,3
+PEN_PW_CN_NG_2,Pentelic,Punic wax,Cinnabar,No ground,2
+PEN_EW_EB_NG_2,Pentelic,Egg white,Egyptian blue,No ground,2
+PEN_EW_EB_NG_3,Pentelic,Egg white,Egyptian blue,No ground,3
 PAR_PW_RL_PB_1,Paros,Punic wax,Red lake,Lead white,1
-PEN_EW_RL_NG_2,Pentelic marble,Egg white,Red lake,No ground,2
+PEN_EW_RL_NG_2,Pentelic,Egg white,Red lake,No ground,2
 PAR_PW_RL_PB_2,Paros,Punic wax,Red lake,Lead white,2
-PEN_EW_RL_NG_3,Pentelic marble,Egg white,Red lake,No ground,3
-PEN_EW_RL_NG_1,Pentelic marble,Egg white,Red lake,No ground,1
-PEN_PW_CN_NG_1,Pentelic marble,Punic wax,Cinnabar,No ground,1
+PEN_EW_RL_NG_3,Pentelic,Egg white,Red lake,No ground,3
+PEN_EW_RL_NG_1,Pentelic,Egg white,Red lake,No ground,1
+PEN_PW_CN_NG_1,Pentelic,Punic wax,Cinnabar,No ground,1
 PAR_PW_RL_PB_3,Paros,Punic wax,Red lake,Lead white,3
-PEN_EW_EB_NG_1,Pentelic marble,Egg white,Egyptian blue,No ground,1
-PEN_PW_EB_NG_1,Pentelic marble,Punic wax,Egyptian blue,No ground,1
-PEN_PW_EB_CC_1,Pentelic marble,Punic wax,Egyptian blue,Calcium carbonate,1
-PEN_PW_EB_MC_1,Pentelic marble,Punic wax,Egyptian blue,Mixed calcite,1
-PEN_PW_EB_MC_3,Pentelic marble,Punic wax,Egyptian blue,Mixed calcite,3
-PEN_PW_EB_CC_2,Pentelic marble,Punic wax,Egyptian blue,Calcium carbonate,2
-PEN_PW_EB_NG_3,Pentelic marble,Punic wax,Egyptian blue,No ground,3
-PEN_PW_CN_NG_3,Pentelic marble,Punic wax,Cinnabar,No ground,3
-PEN_PW_EB_CC_3,Pentelic marble,Punic wax,Egyptian blue,Calcium carbonate,3
-PEN_PW_EB_MC_2,Pentelic marble,Punic wax,Egyptian blue,Mixed calcite,2
-PEN_PW_EB_NG_2,Pentelic marble,Punic wax,Egyptian blue,No ground,2
-PEN_PW_RL_CC_2,Pentelic marble,Punic wax,Red lake,Calcium carbonate,2
-PEN_PW_EB_PB_2,Pentelic marble,Punic wax,Egyptian blue,Lead white,2
-PEN_PW_RL_NG_2,Pentelic marble,Punic wax,Red lake,No ground,2
-PEN_PW_RL_CC_1,Pentelic marble,Punic wax,Red lake,Calcium carbonate,1
-PEN_PW_EB_PB_3,Pentelic marble,Punic wax,Egyptian blue,Lead white,3
-PEN_PW_EB_PB_1,Pentelic marble,Punic wax,Egyptian blue,Lead white,1
-PEN_PW_RL_NG_3,Pentelic marble,Punic wax,Red lake,No ground,3
-PEN_PW_RL_NG_1,Pentelic marble,Punic wax,Red lake,No ground,1
-PEN_PW_RL_MC_2,Pentelic marble,Punic wax,Red lake,Mixed calcite,2
-PEN_PW_RL_CC_3,Pentelic marble,Punic wax,Red lake,Calcium carbonate,3
-PEN_PW_RL_MC_3,Pentelic marble,Punic wax,Red lake,Mixed calcite,3
-PEN_PW_RL_MC_1,Pentelic marble,Punic wax,Red lake,Mixed calcite,1
-PEN_PW_RL_PB_1,Pentelic marble,Punic wax,Red lake,Lead white,1
-PEN_PW_RL_PB_3,Pentelic marble,Punic wax,Red lake,Lead white,3
-PEN_PW_RL_PB_2,Pentelic marble,Punic wax,Red lake,Lead white,2
+PEN_EW_EB_NG_1,Pentelic,Egg white,Egyptian blue,No ground,1
+PEN_PW_EB_NG_1,Pentelic,Punic wax,Egyptian blue,No ground,1
+PEN_PW_EB_CC_1,Pentelic,Punic wax,Egyptian blue,Calcium carbonate,1
+PEN_PW_EB_MC_1,Pentelic,Punic wax,Egyptian blue,Mixed calcite,1
+PEN_PW_EB_MC_3,Pentelic,Punic wax,Egyptian blue,Mixed calcite,3
+PEN_PW_EB_CC_2,Pentelic,Punic wax,Egyptian blue,Calcium carbonate,2
+PEN_PW_EB_NG_3,Pentelic,Punic wax,Egyptian blue,No ground,3
+PEN_PW_CN_NG_3,Pentelic,Punic wax,Cinnabar,No ground,3
+PEN_PW_EB_CC_3,Pentelic,Punic wax,Egyptian blue,Calcium carbonate,3
+PEN_PW_EB_MC_2,Pentelic,Punic wax,Egyptian blue,Mixed calcite,2
+PEN_PW_EB_NG_2,Pentelic,Punic wax,Egyptian blue,No ground,2
+PEN_PW_RL_CC_2,Pentelic,Punic wax,Red lake,Calcium carbonate,2
+PEN_PW_EB_PB_2,Pentelic,Punic wax,Egyptian blue,Lead white,2
+PEN_PW_RL_NG_2,Pentelic,Punic wax,Red lake,No ground,2
+PEN_PW_RL_CC_1,Pentelic,Punic wax,Red lake,Calcium carbonate,1
+PEN_PW_EB_PB_3,Pentelic,Punic wax,Egyptian blue,Lead white,3
+PEN_PW_EB_PB_1,Pentelic,Punic wax,Egyptian blue,Lead white,1
+PEN_PW_RL_NG_3,Pentelic,Punic wax,Red lake,No ground,3
+PEN_PW_RL_NG_1,Pentelic,Punic wax,Red lake,No ground,1
+PEN_PW_RL_MC_2,Pentelic,Punic wax,Red lake,Mixed calcite,2
+PEN_PW_RL_CC_3,Pentelic,Punic wax,Red lake,Calcium carbonate,3
+PEN_PW_RL_MC_3,Pentelic,Punic wax,Red lake,Mixed calcite,3
+PEN_PW_RL_MC_1,Pentelic,Punic wax,Red lake,Mixed calcite,1
+PEN_PW_RL_PB_1,Pentelic,Punic wax,Red lake,Lead white,1
+PEN_PW_RL_PB_3,Pentelic,Punic wax,Red lake,Lead white,3
+PEN_PW_RL_PB_2,Pentelic,Punic wax,Red lake,Lead white,2

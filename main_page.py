@@ -12,8 +12,8 @@ from openpyxl_image_loader import SheetImageLoader
 # Website modes
 MODES = ("Single mock-up", "Comparison", "Texture images")
 COLORMODES = ("Corresponding color mode", "Distinct mode")
-PIGMENT_ATTRIBUTES = (
-("Pentelic marble", "Paros", None), # MARBLES
+MOCKUP_ATTRIBUTES = (
+("Pentelic", "Paros", None), # MARBLES
  ("Punic wax", "Egg white",None), # BINDERS
  ("Red lake", "Cinnabar", "Egyptian blue", None), # PIGMENTS
  ("Lead white", "Calcium carbonate", "Mixed calcite", "No ground",None), # GROUNDS
@@ -33,9 +33,9 @@ class Pigment_attribute():
         self.column_name = column_name
         self.value = value
 
-def query_pigment(df, pigment_attributes):
+def query_mockup(df, mockup_attributes):
     res = df
-    for attribute in pigment_attributes:
+    for attribute in mockup_attributes:
         if attribute.value is not None:
             res = res[res[attribute.column_name] == attribute.value]
     return res
@@ -95,7 +95,7 @@ def plot(selected_names, view_angle='45'):
                 fig.add_trace(trace)
         
             fig.update_layout(
-                legend_title='Illumination & view angles',
+                legend_title='Illumination & viewing angle',
                 title= f'Mock-up: {name}'
             )
 
@@ -118,15 +118,13 @@ def plot(selected_names, view_angle='45'):
                 fig.add_trace(trace)
         
             fig.update_layout(
-                legend_title='Pigment name',
+                legend_title='Mock-up',
                 showlegend = True
             )
   
     st.plotly_chart(fig)
 
-def show_texture(names):
-    name = names.pop()
-    names.add(name)
+def show_texture(name):
     folder_path = "Data/MA-T12 data/"
     extension = ".xlsx"
     file_name = name + extension
@@ -173,52 +171,69 @@ def get_download_data(names):
     data = data.to_csv(index=False).encode('utf-8')
     return data
 
-def single_selection_list(pigment_list):
-    display_list = st.dataframe(pigment_list, on_select="rerun", selection_mode="single-row", hide_index=True, use_container_width=True)
-    selected_names = pigment_list.iloc[display_list.selection["rows"]]["Name"].tolist()
+def single_selection_list(mockup_list):
+    display_list = st.dataframe(mockup_list, on_select="rerun", selection_mode="single-row", hide_index=True, use_container_width=True)
+    selected_names = mockup_list.iloc[display_list.selection["rows"]]["Name"].tolist()
     if selected_names:
         st.session_state.selected_names = set(selected_names)
     return display_list
 
-def multi_selection_list(pigment_list):
-    st.session_state.display_list_edited = st.data_editor(pigment_list, disabled=pigment_list.columns[1:], hide_index=True, use_container_width=True)
-    st.session_state.p_list_multi.update(st.session_state.display_list_edited)
-    st.session_state.selected_names = set(st.session_state.p_list_multi[st.session_state.p_list_multi['Select?'] == True]['Name'].tolist())
+def multi_selection_list(mockup_list):
+    st.session_state.display_list_edited = st.data_editor(mockup_list, disabled=mockup_list.columns[1:], hide_index=True, use_container_width=True)
+    st.session_state.all_mockup_list_multi.update(st.session_state.display_list_edited)
+    st.session_state.selected_names = set(st.session_state.all_mockup_list_multi[st.session_state.all_mockup_list_multi['Select?'] == True]['Name'].tolist())
 
 def update_selection():
-    st.session_state.p_list_multi.update(st.session_state.display_list_edited)
+    st.session_state.all_mockup_list_multi.update(st.session_state.display_list_edited)
 
 def sync_selection():
-    if "p_list_multi" in st.session_state:
-        st.session_state.display_list = st.session_state.p_list_multi.copy()
+    if "all_mockup_list_multi" in st.session_state:
+        st.session_state.display_list = st.session_state.all_mockup_list_multi.copy()
 
 def clear_selected_names(): 
-    if "p_list_multi" in st.session_state:
+    if "all_mockup_list_multi" in st.session_state:
         st.session_state.display_list_edited['Select?'] = False
-        st.session_state.p_list_multi['Select?'] = False
+        st.session_state.all_mockup_list_multi['Select?'] = False
         sync_selection()
+        if st.session_state.on_only:
+            all_selected()
     st.session_state.selected_names = set()
 
 def all_selected():
-    st.session_state.display_list = st.session_state.p_list_multi[st.session_state.p_list_multi['Select?'] == True].copy()
+    st.session_state.display_list = st.session_state.all_mockup_list_multi[st.session_state.all_mockup_list_multi['Select?'] == True].copy()
+
+def sel_only():
+    sync_selection()
+    if "on_only" in st.session_state:
+        if not st.session_state.on_only:
+            all_selected()
 
 def reset_query_conditions():
-    st.session_state.marble = PIGMENT_ATTRIBUTES[0][-1]
-    st.session_state.binder = PIGMENT_ATTRIBUTES[1][-1]
-    st.session_state.pigment = PIGMENT_ATTRIBUTES[2][-1]
-    st.session_state.ground = PIGMENT_ATTRIBUTES[3][-1]
-    st.session_state.nlayers = PIGMENT_ATTRIBUTES[4][-1]
-    if 'p_list_multi' in st.session_state:
+    st.session_state.marble = MOCKUP_ATTRIBUTES[0][-1]
+    st.session_state.binder = MOCKUP_ATTRIBUTES[1][-1]
+    st.session_state.pigment = MOCKUP_ATTRIBUTES[2][-1]
+    st.session_state.ground = MOCKUP_ATTRIBUTES[3][-1]
+    st.session_state.nlayers = MOCKUP_ATTRIBUTES[4][-1]
+    if 'all_mockup_list_multi' in st.session_state:
         sync_selection()
+    sync_all_selection()
 
+def sync_all_selection():
+    if "on_only" in st.session_state:
+        if st.session_state.on_only:
+            all_selected()
+
+def on_query_change():
+    sync_selection()
+    sync_all_selection()
 
 def main():
     # Hiding the default top-right menu from streamlit
     st.markdown(hide_menu, unsafe_allow_html=True)
     # Read pigment list file
     list_path = 'Data/pigment_list.csv'
-    st.session_state.p_list = pd.read_csv(list_path)
-    st.session_state.p_list['Number of layers'] = st.session_state.p_list['Number of layers'].astype(str)
+    st.session_state.all_mockup_list = pd.read_csv(list_path)
+    st.session_state.all_mockup_list['Number of layers'] = st.session_state.all_mockup_list['Number of layers'].astype(str)
    
     # Initialize session stste
     if "selected_names" not in st.session_state:
@@ -246,82 +261,137 @@ def main():
     # layout of the main part
     title_area = st.empty()
     description_area = st.empty()
+    if st.session_state.mode == MODES[2]:
+        current_name_area = st.empty()
     plot_area = st.empty()
-    st.markdown(
-"<span style='color:grey'> You can query the mock-ups with the corresponding attribute combinations through the following select boxes</span>", unsafe_allow_html=True)
-    pigment_options = st.columns(5)
+    st.markdown("<span style='color:grey'> You can query the mock-ups with the corresponding attribute combinations through the following select boxes</span>", unsafe_allow_html=True)
+    mockup_options = st.columns(5)
     reset_button_area, download_button_area, _ = st.columns([1,2,4])
     reset_button_area.button("reset query", on_click=reset_query_conditions)
     if st.session_state.mode == MODES[1]:
         col1, col2, _= st.columns([2,2,4])
-        on_only = col1.toggle("display selected only", on_change=sync_selection)
-        if on_only:
-            all_selected()
-        col2.button("reset slection", on_click=clear_selected_names)
+        st.session_state.on_only = col1.toggle("display selected only", on_change=sel_only)
+        if st.session_state.on_only:
+            col2.button("reset selection", on_click=clear_selected_names)
     list_area = st.empty()
 
-    # Set pigment query checkboxes
-    with pigment_options[0]:
-        marble_value = st.selectbox(
-            "Marble",
-            PIGMENT_ATTRIBUTES[0],
-            index= 2,
-            format_func= format_display,
-            on_change=sync_selection,
-            key="marble",
-            placeholder="any"
-        )
+    # Set mock-up query checkboxes
+    with mockup_options[0]:
+        # Only set defualt value at the first time the widget is initiated
+        if "marble" in st.session_state:
+            marble_value = st.selectbox(
+                "Marble",
+                MOCKUP_ATTRIBUTES[0],
+                format_func= format_display,
+                on_change=on_query_change,
+                key="marble",
+                placeholder="any"
+            )
+        else:
+            marble_value = st.selectbox(
+                "Marble",
+                MOCKUP_ATTRIBUTES[0],
+                index= len(MOCKUP_ATTRIBUTES[0])-1,
+                format_func= format_display,
+                on_change=on_query_change,
+                key="marble",
+                placeholder="any"
+            )
 
-    with pigment_options[1]:
-        binder_value = st.selectbox(
-            "Binder",
-            PIGMENT_ATTRIBUTES[1],
-            index= 2,
-            format_func= format_display,
-            on_change=sync_selection,
-            key="binder",
-            placeholder="any"
-        )
+        with mockup_options[1]:
+            # Only set defualt value at the first time the widget is initiated
+            if "binder" in st.session_state:
+                binder_value = st.selectbox(
+                    "Binder",
+                    MOCKUP_ATTRIBUTES[1],
+                    format_func= format_display,
+                    on_change=on_query_change,
+                    key="binder",
+                    placeholder="any"
+                )
+            else:
+                binder_value = st.selectbox(
+                    "Binder",
+                    MOCKUP_ATTRIBUTES[1],
+                    index= len(MOCKUP_ATTRIBUTES[1])-1,
+                    format_func= format_display,
+                    on_change=on_query_change,
+                    key="binder",
+                    placeholder="any"
+                )
 
-    with pigment_options[2]:
-        pigment_value = st.selectbox(
-            "Pigment",
-            PIGMENT_ATTRIBUTES[2],
-            index= 3,
-            format_func= format_display,
-            on_change=sync_selection,
-            key="pigment",
-            placeholder="any"
-        )
+    with mockup_options[2]:
+        # Only set defualt value at the first time the widget is initiated
+        if "pigment" in st.session_state:
+             pigment_value = st.selectbox(
+                "Pigment",
+                MOCKUP_ATTRIBUTES[2],
+                format_func= format_display,
+                on_change=on_query_change,
+                key="pigment",
+                placeholder="any"
+            )
+        else:
+            pigment_value = st.selectbox(
+                "Pigment",
+                MOCKUP_ATTRIBUTES[2],
+                index= len(MOCKUP_ATTRIBUTES[2])-1,
+                format_func= format_display,
+                on_change=on_query_change,
+                key="pigment",
+                placeholder="any"
+            )
 
-    with pigment_options[3]:
-        ground_value = st.selectbox(
-            "Ground",
-            PIGMENT_ATTRIBUTES[3],
-            index= 4,
-            format_func= format_display,
-            on_change=sync_selection,
-            key="ground",
-            placeholder="any"
-        )
+    with mockup_options[3]:
+        # Only set defualt value at the first time the widget is initiated
+        if "ground" in st.session_state:
+            ground_value = st.selectbox(
+                "Ground",
+                MOCKUP_ATTRIBUTES[3],
+                format_func= format_display,
+                on_change=on_query_change,
+                key="ground",
+                placeholder="any"
+            )
+        else:
+            ground_value = st.selectbox(
+                "Ground",
+                MOCKUP_ATTRIBUTES[3],
+                index= len(MOCKUP_ATTRIBUTES[3])-1,
+                format_func= format_display,
+                on_change=on_query_change,
+                key="ground",
+                placeholder="any"
+            )
 
-    with pigment_options[4]:
-        nlayers_value = st.selectbox(
-            "Numbers of layers",
-            PIGMENT_ATTRIBUTES[4],
-            index= 3,
-            format_func= format_display,
-            on_change=sync_selection,
-            key="nlayers",
-            placeholder="any"
-        )
+    with mockup_options[4]:
+        # Only set defualt value at the first time the widget is initiated
+        if "nlayers" in st.session_state:
+            nlayers_value = st.selectbox(
+                "Numbers of layers",
+                MOCKUP_ATTRIBUTES[4],
+                format_func= format_display,
+                on_change=on_query_change,
+                key="nlayers",
+                placeholder="any"
+            )
+        else:
+            nlayers_value = st.selectbox(
+                "Numbers of layers",
+                MOCKUP_ATTRIBUTES[4],
+                index= len(MOCKUP_ATTRIBUTES[4])-1,
+                format_func= format_display,
+                on_change=on_query_change,
+                key="nlayers",
+                placeholder="any"
+            )
 
     marble = Pigment_attribute("Marble", marble_value)
     binder = Pigment_attribute("Binder", binder_value)
     pigment = Pigment_attribute("Pigment", pigment_value)
     ground = Pigment_attribute("Ground", ground_value)
     nlayers = Pigment_attribute("Number of layers", nlayers_value)
-    pigment_attributes = [marble, binder, pigment, ground, nlayers]
+    mockup_attributes = [marble, binder, pigment, ground, nlayers]
     
     if st.session_state.mode == MODES[0]:
         with title_area:
@@ -331,11 +401,11 @@ def main():
             st.markdown("<span> Reflectance spectra of single mock-up.</span><span> The mock-ups have been named using the following convention: Marble_Binder_Pigment_Ground_nLayers. More information in the Home page. </span>", unsafe_allow_html=True)
 
         with mode_intro_area:
-            st.markdown("<span style='color:grey'> Select one pigment from the table (by clicking the box at the front of each row) to show its reflectance spectra in the interactive plot,where you can also download the plot.</span>" ,unsafe_allow_html=True)
+            st.markdown("<span style='color:grey'> Select one mock-up from the table (by clicking the box at the front of each row) to show its reflectance spectra in the interactive plot,where you can also download the plot.</span>" ,unsafe_allow_html=True)
         
         with list_area:
-            queried_pigments = query_pigment(st.session_state.p_list, pigment_attributes)
-            single_selection_list(queried_pigments)
+            queried_mockups = query_mockup(st.session_state.all_mockup_list, mockup_attributes)
+            single_selection_list(queried_mockups)
         
         with plot_area:
             plot(st.session_state.selected_names, st.session_state.view_angle)
@@ -353,16 +423,16 @@ def main():
             st.markdown("<span> Reflectance spectra of selected mock-ups. The mock-ups have been named using the following convention: Marble_Binder_Pigment_Ground_nLayers. More information in the Home page. </span>", unsafe_allow_html=True)
 
         with mode_intro_area:
-            st.markdown("<span style = 'color:grey'> Select pigments from the table (by clicking the box at the front of each row) to show their reflectance spectra in the interactive plot, where you can also download the plot. In this mode the plotted curve for each mock-up is the reflectance spectrum at 0/45 geometry</span>", unsafe_allow_html=True )
+            st.markdown("<span style = 'color:grey'> Select mock-ups from the table (by clicking the box at the front of each row) to show their reflectance spectra in the interactive plot, where you can also download the plot. In this mode the plotted curve for each mock-up is the reflectance spectrum at 0/45 geometry</span>", unsafe_allow_html=True )
             
-        if 'p_list_multi' not in st.session_state:
-            st.session_state.p_list_multi = st.session_state.p_list
-            st.session_state.p_list_multi.insert(0, 'Select?', False)
-            st.session_state.display_list = st.session_state.p_list_multi.copy()
-            st.session_state.display_list_edited = st.session_state.p_list_multi.copy()
+        if 'all_mockup_list_multi' not in st.session_state:
+            st.session_state.all_mockup_list_multi = st.session_state.all_mockup_list
+            st.session_state.all_mockup_list_multi.insert(0, 'Select?', False)
+            st.session_state.display_list = st.session_state.all_mockup_list_multi.copy()
+            st.session_state.display_list_edited = st.session_state.all_mockup_list_multi.copy()
 
         with list_area:     
-            st.session_state.display_list = query_pigment(st.session_state.display_list, pigment_attributes)
+            st.session_state.display_list = query_mockup(st.session_state.display_list, mockup_attributes)
             multi_selection_list(st.session_state.display_list)
 
         with plot_area:
@@ -381,15 +451,19 @@ def main():
             st.markdown("<span> Texture images of mock-up. The mock-ups have been named using the following convention: Marble_Binder_Pigment_Ground_nLayers. More information in the Home page. </span>", unsafe_allow_html=True)
 
         with mode_intro_area:
-            st.markdown("<span style='color:grey'>Select one pigment from the table (by clicking the box at the front of each row) to show its texture photos.</span>", unsafe_allow_html=True)
+            st.markdown("<span style='color:grey'>Select one mock-up from the table (by clicking the box at the front of each row) to show its texture photos.</span>", unsafe_allow_html=True)
             
         with list_area:
-            queried_pigments = query_pigment(st.session_state.p_list, pigment_attributes)
+            queried_pigments = query_mockup(st.session_state.all_mockup_list, mockup_attributes)
             single_selection_list(queried_pigments) 
         
         if st.session_state.selected_names:
+            name = st.session_state.selected_names.pop()
+            st.session_state.selected_names.add(name)
+            with current_name_area:
+                st.write(f"**Mock-up: {name}**")
             with plot_area:
-                show_texture(st.session_state.selected_names)
+                show_texture(name)
 
 
 
@@ -398,6 +472,7 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded",
 )
+st.set_option("client.showErrorDetails", "false")
 main()
 
 
