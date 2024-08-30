@@ -195,18 +195,15 @@ def clear_selected_names():
         st.session_state.display_list_edited['Select?'] = False
         st.session_state.all_mockup_list_multi['Select?'] = False
         sync_selection()
-        if st.session_state.on_only:
-            all_selected()
+        sync_all_selection()
     st.session_state.selected_names = set()
 
 def all_selected():
     st.session_state.display_list = st.session_state.all_mockup_list_multi[st.session_state.all_mockup_list_multi['Select?'] == True].copy()
 
-def sel_only():
+def on_select_only_change():
     sync_selection()
-    if "on_only" in st.session_state:
-        if not st.session_state.on_only:
-            all_selected()
+    sync_all_selection()
 
 def reset_query_conditions():
     st.session_state.marble = MOCKUP_ATTRIBUTES[0][-1]
@@ -214,8 +211,7 @@ def reset_query_conditions():
     st.session_state.pigment = MOCKUP_ATTRIBUTES[2][-1]
     st.session_state.ground = MOCKUP_ATTRIBUTES[3][-1]
     st.session_state.nlayers = MOCKUP_ATTRIBUTES[4][-1]
-    if 'all_mockup_list_multi' in st.session_state:
-        sync_selection()
+    sync_selection()
     sync_all_selection()
 
 def sync_all_selection():
@@ -231,10 +227,14 @@ def main():
     # Hiding the default top-right menu from streamlit
     st.markdown(hide_menu, unsafe_allow_html=True)
     # Read pigment list file
-    list_path = 'Data/pigment_list.csv'
-    st.session_state.all_mockup_list = pd.read_csv(list_path)
-    st.session_state.all_mockup_list['Number of layers'] = st.session_state.all_mockup_list['Number of layers'].astype(str)
-   
+    @st.cache_data
+    def read_mockup_list():
+        list_path = 'Data/pigment_list.csv'
+        list = pd.read_csv(list_path)
+        list['Number of layers'] = list['Number of layers'].astype(str)
+        return list
+    
+    st.session_state.all_mockup_list = read_mockup_list()
     # Initialize session stste
     if "selected_names" not in st.session_state:
         st.session_state.selected_names = set()
@@ -270,9 +270,9 @@ def main():
     reset_button_area.button("reset query", on_click=reset_query_conditions)
     if st.session_state.mode == MODES[1]:
         col1, col2, _= st.columns([2,2,4])
-        st.session_state.on_only = col1.toggle("display selected only", on_change=sel_only)
-        if st.session_state.on_only:
-            col2.button("reset selection", on_click=clear_selected_names)
+        on_only = col1.toggle("display selected only", on_change=on_select_only_change, key="on_only")
+        if on_only:
+            col2.button("clear selection", on_click=clear_selected_names)
     list_area = st.empty()
 
     # Set mock-up query checkboxes
