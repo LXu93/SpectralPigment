@@ -1,4 +1,6 @@
+https://ancientpolychromy.streamlit.app/
+
 The website has three modes:
-- Single pigment
+- Single mock-up
 - Comparison
 - Texture image

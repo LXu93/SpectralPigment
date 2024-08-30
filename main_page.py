@@ -27,8 +27,8 @@ hide_menu = """
 </style>
 """
 
-# Use Pigment_attribute object to wrap pigment attribute names and values for querying
-class Pigment_attribute():
+# Use Mockup_attribute object to wrap mock-up attribute names and values for querying
+class Mockup_attribute():
     def __init__(self, column_name, value) -> None:
         self.column_name = column_name
         self.value = value
@@ -386,11 +386,11 @@ def main():
                 placeholder="any"
             )
 
-    marble = Pigment_attribute("Marble", marble_value)
-    binder = Pigment_attribute("Binder", binder_value)
-    pigment = Pigment_attribute("Pigment", pigment_value)
-    ground = Pigment_attribute("Ground", ground_value)
-    nlayers = Pigment_attribute("Number of layers", nlayers_value)
+    marble = Mockup_attribute("Marble", marble_value)
+    binder = Mockup_attribute("Binder", binder_value)
+    pigment = Mockup_attribute("Pigment", pigment_value)
+    ground = Mockup_attribute("Ground", ground_value)
+    nlayers = Mockup_attribute("Number of layers", nlayers_value)
     mockup_attributes = [marble, binder, pigment, ground, nlayers]
     
     if st.session_state.mode == MODES[0]:
@@ -454,8 +454,8 @@ def main():
             st.markdown("<span style='color:grey'>Select one mock-up from the table (by clicking the box at the front of each row) to show its texture photos.</span>", unsafe_allow_html=True)
             
         with list_area:
-            queried_pigments = query_mockup(st.session_state.all_mockup_list, mockup_attributes)
-            single_selection_list(queried_pigments) 
+            queried_mockups = query_mockup(st.session_state.all_mockup_list, mockup_attributes)
+            single_selection_list(queried_mockups) 
         
         if st.session_state.selected_names:
             name = st.session_state.selected_names.pop()
@@ -465,8 +465,7 @@ def main():
             with plot_area:
                 show_texture(name)
 
-
-
+# page_config
 st.set_page_config(
     page_title='Pigment Spectral',
     layout="wide",
