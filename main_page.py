@@ -13,11 +13,41 @@ from openpyxl_image_loader import SheetImageLoader
 MODES = ("Single mock-up", "Comparison", "Texture images")
 COLORMODES = ("Corresponding color mode", "Distinct mode")
 MOCKUP_ATTRIBUTES = (
-("Pentelic", "Paros", None), # MARBLES
- ("Punic wax", "Egg white",None), # BINDERS
- ("Red lake", "Cinnabar", "Egyptian blue", None), # PIGMENTS
- ("Lead white", "Calcium carbonate", "Mixed calcite", "No ground",None), # GROUNDS
- ("1", "2", "3", None) # NLAYERS
+('Pentelic', 'Paros', None), # MARBLES
+ ('Egg white', 'Pentelic', 'Punic wax',None), # BINDERS
+ ('Cinnabar',
+ 'Cinnabar + carbon black line',
+ 'Egyptian blue',
+ 'carbon black',
+ 'green earth',
+ 'green earth mixed with Egyptian blue',
+ 'green earth with gypsum (Zecchi)',
+ 'mixture dark purple',
+ 'mixture purple',
+ 'mixture light purple',
+ 'mixture raspberry',
+ 'mixture salmon',
+ 'mixture skin tone I',
+ 'mixture skin tone II',
+ 'red lake',
+ 'red lake Carminic (Kremer)',
+ 'red lake mixed with Egyptian blue and calcium carbonate',
+ 'red lake mixed with calcium carbonate',
+ 'red ochre',
+ 'red ochre mixed with yellow ochre',
+ 'red ochre over Egyptian blue',
+ 'red ochre with gypsum (Zecchi)',
+ 'red ochre with sinopia (Zecchi)',
+ 'yellow ochre',
+ 'yellow ochre mixed with Egyptian blue',
+ 'yellow ochre over red ochre',
+ 'yellow ochre with gypsum (Zecchi)', None), # PIGMENTS
+ ('Calcium carbonate',
+ 'Egyptian blue with calcite',
+ 'Lead white',
+ 'Mixed with calcite',
+ 'No ground',None), # GROUNDS
+ ("1", "2", "3","many", None) # NLAYERS
  ) 
 hide_menu = """
 <style>
@@ -49,11 +79,11 @@ def format_display(label):
 
 
 def plot(selected_names, view_angle='45'):
-    folder_path = 'Data/MA-T12 data/'
+    folder_path = 'Data new/MA-T12 data/'
     extension = '.xlsx'
     
     if st.session_state.color_mode == COLORMODES[0]:
-        color_file_path = 'Data/colors.csv'
+        color_file_path = 'Data new/colors.csv'
         all_cols = pd.read_csv(color_file_path, usecols=[0, 1, 5, 6, 7], header=0)
     
 
@@ -61,7 +91,8 @@ def plot(selected_names, view_angle='45'):
     fig.update_layout(
                 xaxis_title='Wavelength (nm)',
                 yaxis_title='Reflectance',
-            )  
+            )
+    fig.update_yaxes(range=[-.01, 1.01])  
     
     if selected_names:
         if st.session_state.mode == MODES[0]:
@@ -125,7 +156,7 @@ def plot(selected_names, view_angle='45'):
     st.plotly_chart(fig)
 
 def show_texture(name):
-    folder_path = "Data/MA-T12 data/"
+    folder_path = "Data new/MA-T12 data/"
     extension = ".xlsx"
     file_name = name + extension
     file_path = os.path.join(folder_path, file_name)
@@ -158,7 +189,7 @@ def show_texture(name):
         cols[i].image(image=images[i+3],caption=captions[i+3])
 
 def get_download_data(names):
-    folder_path = "Data/MA-T12 data/"
+    folder_path = "Data new/MA-T12 data/"
     extension = ".xlsx"
 
     dfs = []
@@ -229,7 +260,7 @@ def main():
     # Read pigment list file
     @st.cache_data
     def read_mockup_list():
-        list_path = 'Data/pigment_list.csv'
+        list_path = 'Data new/pigment_list.csv'
         list = pd.read_csv(list_path)
         list['Number of layers'] = list['Number of layers'].astype(str)
         return list

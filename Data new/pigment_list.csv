@@ -1,0 +1,221 @@
+Name,Marble,Binder,Pigment,Ground,Number of layers
+PAR_EW_ROsi_NG_1,Paros,Egg white,red ochre with sinopia (Zecchi),No ground,1
+PAR_EW_ROz_NG_1,Paros,Egg white,red ochre with gypsum (Zecchi),No ground,1
+PAR_EW_ROsi_NG_3,Paros,Egg white,red ochre with sinopia (Zecchi),No ground,3
+PAR_EW_ROsi_NG_2,Paros,Egg white,red ochre with sinopia (Zecchi),No ground,2
+PAR_EW_ROz_NG_2,Paros,Egg white,red ochre with gypsum (Zecchi),No ground,2
+PAR_EW_YOz_NG_3,Paros,Egg white,yellow ochre with gypsum (Zecchi),No ground,3
+PAR_PW_CN_CC_3,Paros,Punic wax,Cinnabar,Calcium carbonate,3
+PAR_PW_CN_MC_3,Paros,Punic wax,Cinnabar,Mixed with calcite,3
+PAR_PW_CN_MC_2,Paros,Punic wax,Cinnabar,Mixed with calcite,2
+PAR_PW_CN_CC_1,Paros,Punic wax,Cinnabar,Calcium carbonate,1
+PAR_PW_CN_PB_1,Paros,Punic wax,Cinnabar,Lead white,1
+PAR_PW_CN+_NG_1,Paros,Punic wax,Cinnabar + carbon black line,No ground,1
+PAR_PW_CN_CC_2,Paros,Punic wax,Cinnabar,Calcium carbonate,2
+PAR_PW_CN_MC_1,Paros,Punic wax,Cinnabar,Mixed with calcite,1
+PAR_EW_YOz_NG_2,Paros,Egg white,yellow ochre with gypsum (Zecchi),No ground,2
+PAR_EW_ROz_NG_3,Paros,Egg white,red ochre with gypsum (Zecchi),No ground,3
+PAR_EW_YOz_NG_1,Paros,Egg white,yellow ochre with gypsum (Zecchi),No ground,1
+PAR_PW_CB_NG_1,Paros,Punic wax,carbon black,No ground,1
+PAR_PW_GE_CC_3,Paros,Punic wax,green earth,Calcium carbonate,3
+PAR_PW_GEz_NG_2,Paros,Punic wax,green earth with gypsum (Zecchi),No ground,2
+PAR_PW_GEz_NG_1,Paros,Punic wax,green earth with gypsum (Zecchi),No ground,1
+PAR_PW_GE_MC_1,Paros,Punic wax,green earth,Mixed with calcite,1
+PAR_PW_GE_CC_1,Paros,Punic wax,green earth,Calcium carbonate,1
+PAR_PW_CB_PB_2,Paros,Punic wax,carbon black,Lead white,2
+PAR_PW_CN_PB_3,Paros,Punic wax,Cinnabar,Lead white,3
+PAR_PW_GEz_NG_3,Paros,Punic wax,green earth with gypsum (Zecchi),No ground,3
+PAR_PEN_GE+EB_NG_1,Paros,Pentelic,green earth mixed with Egyptian blue,No ground,1
+PAR_PW_GE_CC_2,Paros,Punic wax,green earth,Calcium carbonate,2
+PAR_PW_darkPUR_NG_x,Paros,Punic wax,mixture dark purple,No ground,many
+PAR_PW_GE_MC_2,Paros,Punic wax,green earth,Mixed with calcite,2
+PAR_PW_GE_MC_3,Paros,Punic wax,green earth,Mixed with calcite,3
+PAR_PW_PUR_NG_x,Paros,Punic wax,mixture purple,No ground,many
+PAR_PW_GE_PB_3,Paros,Punic wax,green earth,Lead white,3
+PAR_PW_GE_PB_1,Paros,Punic wax,green earth,Lead white,1
+PAR_PW_RL+CC_EB+CC_1,Paros,Punic wax,red lake mixed with calcium carbonate,Egyptian blue with calcite,1
+PAR_PW_RL+EB+CC_NG_3,Paros,Punic wax,red lake mixed with Egyptian blue and calcium carbonate,No ground,3
+PAR_PW_GE_NG_1,Paros,Punic wax,green earth,No ground,1
+PAR_PW_lightPUR_NG_x,Paros,Punic wax,mixture light purple,No ground,many
+PAR_PW_RL+CC_EB+CC_2,Paros,Punic wax,red lake mixed with calcium carbonate,Egyptian blue with calcite,2
+PAR_PW_RL+EB+CC_NG_1,Paros,Punic wax,red lake mixed with Egyptian blue and calcium carbonate,No ground,1
+PAR_PW_GE_NG_3,Paros,Punic wax,green earth,No ground,3
+PAR_PW_RL+EB+CC_NG_2,Paros,Punic wax,red lake mixed with Egyptian blue and calcium carbonate,No ground,2
+PAR_PW_raspberry_NG_x,Paros,Punic wax,mixture raspberry,No ground,many
+PAR_PW_GE_NG_2,Paros,Punic wax,green earth,No ground,2
+PAR_PW_GE_PB_2,Paros,Punic wax,green earth,Lead white,2
+PAR_PW_RO-EB_NG_1,Paros,Punic wax,red ochre over Egyptian blue,No ground,1
+PAR_PW_RO+YO_NG_2,Paros,Punic wax,red ochre mixed with yellow ochre,No ground,2
+PAR_PW_RLk_NG_3,Paros,Punic wax,red lake Carminic (Kremer),No ground,3
+PAR_PW_RLk_NG_1,Paros,Punic wax,red lake Carminic (Kremer),No ground,1
+PAR_PW_RL_EB+CC_1,Paros,Punic wax,red lake,Egyptian blue with calcite,1
+PAR_PW_RO+YO_NG_3,Paros,Punic wax,red ochre mixed with yellow ochre,No ground,3
+PAR_PW_RO+YO_NG_1,Paros,Punic wax,red ochre mixed with yellow ochre,No ground,1
+PAR_PW_ROz_NG_1,Paros,Punic wax,red ochre with gypsum (Zecchi),No ground,1
+PAR_PW_RLk_NG_2,Paros,Punic wax,red lake Carminic (Kremer),No ground,2
+PAR_PW_ROz_NG_2,Paros,Punic wax,red ochre with gypsum (Zecchi),No ground,2
+PAR_PW_RO_NG_1,Paros,Punic wax,red ochre,No ground,1
+PAR_PW_RO_MC_2,Paros,Punic wax,red ochre,Mixed with calcite,2
+PAR_PW_RO_PB_2,Paros,Punic wax,red ochre,Lead white,2
+PAR_PW_STI_NG_1,Paros,Punic wax,mixture skin tone I,No ground,1
+PAR_PW_RO_PB_1,Paros,Punic wax,red ochre,Lead white,1
+PAR_PW_RO_NG_2,Paros,Punic wax,red ochre,No ground,2
+PAR_PW_RO_NG_3,Paros,Punic wax,red ochre,No ground,3
+PAR_PW_STII_NG_2,Paros,Punic wax,mixture skin tone II,No ground,2
+PAR_PW_ROz_NG_3,Paros,Punic wax,red ochre with gypsum (Zecchi),No ground,3
+PAR_PW_RO_CC_2,Paros,Punic wax,red ochre,Calcium carbonate,2
+PAR_PW_RO_MC_1,Paros,Punic wax,red ochre,Mixed with calcite,1
+PAR_PW_RO_MC_3,Paros,Punic wax,red ochre,Mixed with calcite,3
+PAR_PW_salmon_NG_x,Paros,Punic wax,mixture salmon,No ground,many
+PAR_PW_RO_CC_3,Paros,Punic wax,red ochre,Calcium carbonate,3
+PAR_PW_RO_CC_1,Paros,Punic wax,red ochre,Calcium carbonate,1
+PAR_PW_RO_PB_3,Paros,Punic wax,red ochre,Lead white,3
+PAR_PW_STII_NG_1,Paros,Punic wax,mixture skin tone II,No ground,1
+PAR_PW_YO_MC_1,Paros,Punic wax,yellow ochre,Mixed with calcite,1
+PAR_PW_YO_NG_2,Paros,Punic wax,yellow ochre,No ground,2
+PAR_PW_YO+EB_NG_1,Paros,Punic wax,yellow ochre mixed with Egyptian blue,No ground,1
+PAR_PW_YO_PB_1,Paros,Punic wax,yellow ochre,Lead white,1
+PAR_PW_YO_NG_3,Paros,Punic wax,yellow ochre,No ground,3
+PAR_PW_YO_NG_1,Paros,Punic wax,yellow ochre,No ground,1
+PAR_PW_YO_CC_1,Paros,Punic wax,yellow ochre,Calcium carbonate,1
+PAR_PW_YO_CC_3,Paros,Punic wax,yellow ochre,Calcium carbonate,3
+PAR_PW_YO_MC_2,Paros,Punic wax,yellow ochre,Mixed with calcite,2
+PAR_PW_YO_MC_3,Paros,Punic wax,yellow ochre,Mixed with calcite,3
+PAR_PW_YO-RO_NG_1,Paros,Punic wax,yellow ochre over red ochre,No ground,1
+PAR_PW_YO_CC_2,Paros,Punic wax,yellow ochre,Calcium carbonate,2
+PAR_PW_STI_NG_2,Paros,Punic wax,mixture skin tone I,No ground,2
+PEN_PW_CB_NG_1,Pentelic,Punic wax,carbon black,No ground,1
+PAR_PW_YO_PB_2,Paros,Punic wax,yellow ochre,Lead white,2
+PAR_PW_YO_PB_3,Paros,Punic wax,yellow ochre,Lead white,3
+PEN_PW_GE+EB_NG_1,Pentelic,Punic wax,green earth mixed with Egyptian blue,No ground,1
+PEN_PW_GEz_NG_2,Pentelic,Punic wax,green earth with gypsum (Zecchi),No ground,2
+PEN_PW_GE_PB_3,Pentelic,Punic wax,green earth,Lead white,3
+PEN_PW_GE_CC_2,Pentelic,Punic wax,green earth,Calcium carbonate,2
+PEN_PW_GE_NG_3,Pentelic,Punic wax,green earth,No ground,3
+PEN_PW_GE_MC_1,Pentelic,Punic wax,green earth,Mixed with calcite,1
+PEN_PW_GEz_NG_3,Pentelic,Punic wax,green earth with gypsum (Zecchi),No ground,3
+PEN_PW_GE_MC_3,Pentelic,Punic wax,green earth,Mixed with calcite,3
+PEN_PW_GE_PB_1,Pentelic,Punic wax,green earth,Lead white,1
+PEN_PW_GE_MC_2,Pentelic,Punic wax,green earth,Mixed with calcite,2
+PEN_PW_GE_CC_1,Pentelic,Punic wax,green earth,Calcium carbonate,1
+PEN_PW_GEz_NG_1,Pentelic,Punic wax,green earth with gypsum (Zecchi),No ground,1
+PEN_PW_RL+CC_EB+CC_1,Pentelic,Punic wax,red lake mixed with calcium carbonate,Egyptian blue with calcite,1
+PEN_PW_GE_CC_3,Pentelic,Punic wax,green earth,Calcium carbonate,3
+PEN_PW_GE_NG_2,Pentelic,Punic wax,green earth,No ground,2
+PEN_PW_GE_NG_1,Pentelic,Punic wax,green earth,No ground,1
+PEN_PW_GE_PB_2,Pentelic,Punic wax,green earth,Lead white,2
+PEN_PW_RO+YO_NG_2,Pentelic,Punic wax,red ochre mixed with yellow ochre,No ground,2
+PEN_PW_RL_EB+CC_1,Pentelic,Punic wax,red lake,Egyptian blue with calcite,1
+PEN_PW_RLk_NG_1,Pentelic,Punic wax,red lake Carminic (Kremer),No ground,1
+PEN_PW_RO+YO_NG_1,Pentelic,Punic wax,red ochre mixed with yellow ochre,No ground,1
+PEN_PW_RLk_NG_3,Pentelic,Punic wax,red lake Carminic (Kremer),No ground,3
+PEN_PW_RL+CC_EB+CC_2,Pentelic,Punic wax,red lake mixed with calcium carbonate,Egyptian blue with calcite,2
+PEN_PW_RLk_NG_2,Pentelic,Punic wax,red lake Carminic (Kremer),No ground,2
+PEN_PW_ROz_NG_3,Pentelic,Punic wax,red ochre with gypsum (Zecchi),No ground,3
+PEN_PW_YO+EB_NG_1,Pentelic,Punic wax,yellow ochre mixed with Egyptian blue,No ground,1
+PEN_PW_RO_PB_3,Pentelic,Punic wax,red ochre,Lead white,3
+PEN_PW_RO_NG_3,Pentelic,Punic wax,red ochre,No ground,3
+PEN_PW_RO_MC_1,Pentelic,Punic wax,red ochre,Mixed with calcite,1
+PEN_PW_RO_CC_2,Pentelic,Punic wax,red ochre,Calcium carbonate,2
+PEN_PW_RO_PB_2,Pentelic,Punic wax,red ochre,Lead white,2
+PEN_PW_RO_NG_1,Pentelic,Punic wax,red ochre,No ground,1
+PEN_PW_RO_MC_3,Pentelic,Punic wax,red ochre,Mixed with calcite,3
+PEN_PW_RO_NG_2,Pentelic,Punic wax,red ochre,No ground,2
+PEN_PW_RO_CC_1,Pentelic,Punic wax,red ochre,Calcium carbonate,1
+PEN_PW_ROz_NG_2,Pentelic,Punic wax,red ochre with gypsum (Zecchi),No ground,2
+PEN_PW_ROz_NG_1,Pentelic,Punic wax,red ochre with gypsum (Zecchi),No ground,1
+PEN_PW_RO_PB_1,Pentelic,Punic wax,red ochre,Lead white,1
+PEN_PW_RO_CC_3,Pentelic,Punic wax,red ochre,Calcium carbonate,3
+PEN_PW_RO_MC_2,Pentelic,Punic wax,red ochre,Mixed with calcite,2
+PEN_PW_YO_MC_2,Pentelic,Punic wax,yellow ochre,Mixed with calcite,2
+PEN_PW_YO_MC_1,Pentelic,Punic wax,yellow ochre,Mixed with calcite,1
+PEN_PW_YO_PB_1,Pentelic,Punic wax,yellow ochre,Lead white,1
+PEN_PW_YO_NG_2,Pentelic,Punic wax,yellow ochre,No ground,2
+PEN_PW_YO_PB_3,Pentelic,Punic wax,yellow ochre,Lead white,3
+PEN_PW_YO_CC_1,Pentelic,Punic wax,yellow ochre,Calcium carbonate,1
+PEN_PW_YO_CC_3,Pentelic,Punic wax,yellow ochre,Calcium carbonate,3
+PEN_PW_YO_CC_2,Pentelic,Punic wax,yellow ochre,Calcium carbonate,2
+PEN_PW_YO_NG_1,Pentelic,Punic wax,yellow ochre,No ground,1
+PEN_PW_YO_MC_3,Pentelic,Punic wax,yellow ochre,Mixed with calcite,3
+PEN_PW_YO_PB_2,Pentelic,Punic wax,yellow ochre,Lead white,2
+PEN_PW_YO_NG_3,Pentelic,Punic wax,yellow ochre,No ground,3
+PAR_EW_RL_NG_1,Paros,Egg white,red lake,No ground,1
+PAR_EW_EB_NG_2,Paros,Egg white,Egyptian blue,No ground,2
+PAR_PW_CN_NG_1,Paros,Punic wax,Cinnabar,No ground,1
+PAR_PW_CN_NG_2,Paros,Punic wax,Cinnabar,No ground,2
+PAR_EW_EB_NG_3,Paros,Egg white,Egyptian blue,No ground,3
+PAR_EW_RL_NG_3,Paros,Egg white,red lake,No ground,3
+PAR_EW_RL_NG_2,Paros,Egg white,red lake,No ground,2
+PAR_EW_EB_NG_1,Paros,Egg white,Egyptian blue,No ground,1
+PAR_PW_RL_MC_1,Paros,Punic wax,red lake,Mixed with calcite,1
+PAR_PW_EB_CC_1,Paros,Punic wax,Egyptian blue,Calcium carbonate,1
+PAR_PW_RL_MC_3,Paros,Punic wax,red lake,Mixed with calcite,3
+PAR_PW_EB_PB_2,Paros,Punic wax,Egyptian blue,Lead white,2
+PAR_PW_EB_CC_2,Paros,Punic wax,Egyptian blue,Calcium carbonate,2
+PAR_PW_EB_MC_3,Paros,Punic wax,Egyptian blue,Mixed with calcite,3
+PAR_PW_RL_MC_2,Paros,Punic wax,red lake,Mixed with calcite,2
+PAR_PW_EB_PB_1,Paros,Punic wax,Egyptian blue,Lead white,1
+PAR_PW_EB_NG_1,Paros,Punic wax,Egyptian blue,No ground,1
+PAR_PW_EB_MC_2,Paros,Punic wax,Egyptian blue,Mixed with calcite,2
+PAR_PW_RL_CC_1,Paros,Punic wax,red lake,Calcium carbonate,1
+PAR_PW_EB_MC_1,Paros,Punic wax,Egyptian blue,Mixed with calcite,1
+PAR_PW_EB_PB_3,Paros,Punic wax,Egyptian blue,Lead white,3
+PAR_PW_RL_CC_3,Paros,Punic wax,red lake,Calcium carbonate,3
+PAR_PW_EB_NG_3,Paros,Punic wax,Egyptian blue,No ground,3
+PAR_PW_RL_CC_2,Paros,Punic wax,red lake,Calcium carbonate,2
+PAR_PW_EB_CC_3,Paros,Punic wax,Egyptian blue,Calcium carbonate,3
+PAR_PW_EB_NG_2,Paros,Punic wax,Egyptian blue,No ground,2
+PAR_PW_CN_NG_3,Paros,Punic wax,Cinnabar,No ground,3
+PEN_PW_EB_CC_2,Pentelic,Punic wax,Egyptian blue,Calcium carbonate,2
+PEN_EW_RL_NG_1,Pentelic,Egg white,red lake,No ground,1
+PEN_PW_CN_NG_2,Pentelic,Punic wax,Cinnabar,No ground,2
+PAR_PW_RL_PB_3,Paros,Punic wax,red lake,Lead white,3
+PEN_EW_RL_NG_3,Pentelic,Egg white,red lake,No ground,3
+PEN_EW_EB_NG_2,Pentelic,Egg white,Egyptian blue,No ground,2
+PEN_PW_CN_NG_3,Pentelic,Punic wax,Cinnabar,No ground,3
+PEN_PW_EB_CC_1,Pentelic,Punic wax,Egyptian blue,Calcium carbonate,1
+PEN_EW_RL_NG_2,Pentelic,Egg white,red lake,No ground,2
+PAR_PW_RL_NG_1,Paros,Punic wax,red lake,No ground,1
+PAR_PW_RL_NG_3,Paros,Punic wax,red lake,No ground,3
+PAR_PW_RL_NG_2,Paros,Punic wax,red lake,No ground,2
+PAR_PW_RL_PB_1,Paros,Punic wax,red lake,Lead white,1
+PAR_PW_RL_PB_2,Paros,Punic wax,red lake,Lead white,2
+PEN_PW_EB_CC_3,Pentelic,Punic wax,Egyptian blue,Calcium carbonate,3
+PEN_EW_EB_NG_3,Pentelic,Egg white,Egyptian blue,No ground,3
+PEN_EW_EB_NG_1,Pentelic,Egg white,Egyptian blue,No ground,1
+PEN_PW_CN_NG_1,Pentelic,Punic wax,Cinnabar,No ground,1
+PEN_PW_RL_NG_2,Pentelic,Punic wax,red lake,No ground,2
+PEN_PW_EB_MC_2,Pentelic,Punic wax,Egyptian blue,Mixed with calcite,2
+PEN_PW_EB_NG_2,Pentelic,Punic wax,Egyptian blue,No ground,2
+PEN_PW_EB_PB_1,Pentelic,Punic wax,Egyptian blue,Lead white,1
+PEN_PW_EB_MC_3,Pentelic,Punic wax,Egyptian blue,Mixed with calcite,3
+PEN_PW_RL_CC_1,Pentelic,Punic wax,red lake,Calcium carbonate,1
+PEN_PW_RL_CC_2,Pentelic,Punic wax,red lake,Calcium carbonate,2
+PEN_PW_EB_NG_1,Pentelic,Punic wax,Egyptian blue,No ground,1
+PEN_PW_RL_MC_1,Pentelic,Punic wax,red lake,Mixed with calcite,1
+PEN_PW_RL_MC_3,Pentelic,Punic wax,red lake,Mixed with calcite,3
+PEN_PW_EB_PB_2,Pentelic,Punic wax,Egyptian blue,Lead white,2
+PEN_PW_EB_MC_1,Pentelic,Punic wax,Egyptian blue,Mixed with calcite,1
+PEN_PW_RL_MC_2,Pentelic,Punic wax,red lake,Mixed with calcite,2
+PEN_PW_EB_NG_3,Pentelic,Punic wax,Egyptian blue,No ground,3
+PEN_PW_RL_NG_1,Pentelic,Punic wax,red lake,No ground,1
+PEN_PW_EB_PB_3,Pentelic,Punic wax,Egyptian blue,Lead white,3
+PEN_PW_RL_CC_3,Pentelic,Punic wax,red lake,Calcium carbonate,3
+PEN_PW_RL_NG_3,Pentelic,Punic wax,red lake,No ground,3
+PEN_PW_RL_PB_2,Pentelic,Punic wax,red lake,Lead white,2
+PEN_PW_RL_PB_3,Pentelic,Punic wax,red lake,Lead white,3
+PEN_PW_RL_PB_1,Pentelic,Punic wax,red lake,Lead white,1
+PEN_NaN_NaN_PB_NaN,Pentelic,NaN,NaN,Lead white,NaN
+PEN_NaN_NaN_CC+EB_NaN,Pentelic,NaN,NaN,Egyptian blue with calcite,NaN
+PEN_NaN_NaN_CC_NaN,Pentelic,NaN,NaN,Calcium carbonate,NaN
+PAR_NaN_NaN_PB_NaN,Paros,NaN,NaN,Lead white,NaN
+PAR_NaN_NaN_CC_NaN,Paros,NaN,NaN,Calcium carbonate,NaN
+PEN_PW_CN+_NG_1,Pentelic,Punic wax,Cinnabar + carbon black line,No ground,1
+PEN_NaN_NaN_NaN_NaN,Pentelic,NaN,NaN,NaN,NaN
+PAR_NaN_NaN_NaN_NaN,Paros,NaN,NaN,NaN,NaN
+PEN_PW_RO+YO_NG_3,Pentelic,Punic wax,red ochre mixed with yellow ochre,No ground,3
+PEN_PW_YO-RO_NG_1,Pentelic,Punic wax,yellow ochre over red ochre,No ground,1
+PEN_PW_RO-EB_NG_1,Pentelic,Punic wax,red ochre over Egyptian blue,No ground,1
+PEN_PW_RL+EB+CC_NG_1,Pentelic,Punic wax,red lake mixed with Egyptian blue and calcium carbonate,No ground,1
+PEN_PW_RL+EB+CC_NG_2,Pentelic,Punic wax,red lake mixed with Egyptian blue and calcium carbonate,No ground,2
+PEN_PW_RL+EB+CC_NG_3,Pentelic,Punic wax,red lake mixed with Egyptian blue and calcium carbonate,No ground,3
