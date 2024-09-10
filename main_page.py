@@ -14,7 +14,7 @@ MODES = ("Single mock-up", "Comparison", "Texture images")
 COLORMODES = ("Corresponding color mode", "Distinct mode")
 MOCKUP_ATTRIBUTES = (
 ('Pentelic', 'Paros', None), # MARBLES
- ('Egg white', 'Pentelic', 'Punic wax',None), # BINDERS
+ ('Egg white', 'Punic wax',None), # BINDERS
  ('Cinnabar',
  'Cinnabar + carbon black line',
  'Egyptian blue',
